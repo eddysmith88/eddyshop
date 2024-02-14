@@ -60,11 +60,11 @@
         e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '{% url 'cart_add' %}',
+            url: `{% url "cart_add" %}`,
             data: {
-                {#product_id: $('#add_cart').val(),#}
+                // {#product_id: $('#add_cart').val(),#}
                 product_id : '{{ product.id}}',
-                {#product_qty: $('#qty-cart option:selected').text(),#}
+                // {#product_qty: $('#qty-cart option:selected').text(),#}
                 product_qty: '{{ product.id }}',
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 action: 'post'
@@ -72,6 +72,7 @@
             success: function (json){
                 //console.log(json)
                 document.getElementById("cart_quantity").textContent = json.qty
+                location.reload();
             },
             error: function (xhr, errmsg, err){
 
